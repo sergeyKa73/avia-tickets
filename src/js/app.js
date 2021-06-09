@@ -1,9 +1,19 @@
 import '../css/style.css';
 import './plugins';
 import locations from './store/location';
+import formUi from './views/form';
 
-locations.init().then(res => {
-    console.log(res);
-    console.log(locations);
-    console.log(locations.getCitiesByCountryCode('PE'));
-});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    initApp();
+
+    // Events
+
+    // Handlers
+    async function initApp() {
+        await locations.init();
+        formUi.setAutocompleteData(locations.shortCitiesList);
+    }
+})
